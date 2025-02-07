@@ -9,7 +9,9 @@ import checked from "../public/checked.png";
 export default function ToDoList() {
   let [Todos, setTodos] = useState([{ task: "Sample Task", id: uuidv4() }]);
   let [newTodo, setNewTodo] = useState("");
-
+  let toggle = (e) => {
+    e.target.classList.toggle("checked");
+  };
   let addTask = () => {
     setTodos((prevTodos) => {
       return [...prevTodos, { task: newTodo, id: uuidv4() }];
@@ -48,7 +50,7 @@ export default function ToDoList() {
                 onClick={(e) => toggle(e)}
                 style={{
                   backgroundImage: `url(${
-                    e.target.classList.toggle("checked") ? checked : unchecked
+                    e.target.classList.contains("checked") ? checked : unchecked
                   })`,
                 }}
               >
