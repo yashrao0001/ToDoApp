@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 import appLogo from "/icon.png";
 import removeIcon from "/remove.png";
 import "./ToDoList.css";
+import unchecked from "../public/unchecked.png";
+import checked from "../public/checked.png";
 
 export default function ToDoList() {
   let [Todos, setTodos] = useState([{ task: "Sample Task", id: uuidv4() }]);
   let [newTodo, setNewTodo] = useState("");
-  let toggle = (e) => {
-    e.target.classList.toggle("checked");
-  };
+
   let addTask = () => {
     setTodos((prevTodos) => {
       return [...prevTodos, { task: newTodo, id: uuidv4() }];
@@ -43,7 +43,15 @@ export default function ToDoList() {
         <div id="listcontainer">
           <ul>
             {Todos.map((todo) => (
-              <li key={todo.id} onClick={(e) => toggle(e)}>
+              <li
+                key={todo.id}
+                onClick={(e) => toggle(e)}
+                style={{
+                  backgroundImage: `url(${
+                    e.target.classList.toggle("checked") ? checked : unchecked
+                  })`,
+                }}
+              >
                 <span>{todo.task}</span>
                 <img
                   onClick={(e) => {
