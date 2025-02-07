@@ -7,7 +7,6 @@ import "./ToDoList.css";
 export default function ToDoList() {
   let [Todos, setTodos] = useState([{ task: "Sample Task", id: uuidv4() }]);
   let [newTodo, setNewTodo] = useState("");
-  let li = document.querySelector("li");
   let toggle = (e) => {
     e.target.classList.toggle("checked");
   };
